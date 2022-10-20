@@ -1,0 +1,41 @@
+#!/bin/bash
+
+echo "Criando diretórios..."
+
+mkdir /publico
+mkdir /devs
+mkdir /arts
+mkdir /sounds
+
+echo "Criando grupos de usuários..."
+
+groupadd GRP_DEV
+groupadd GRP_ART
+groupadd GRP_SOUND
+
+echo "Criando usuários..."
+
+useradd gus -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_DEV
+useradd phil -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_DEV
+useradd jhon -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_DEV
+
+useradd kay -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_ART
+useradd mary -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_ART
+useradd willian -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_ART
+
+useradd jhonny -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_SOUND
+useradd bill -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_SOUND
+useradd wanessa -m -s /bin/bash -p $(openssl passwd -1 "senha123") -G GRP_SOUND
+
+echo "Especificando as permissões dos diretórios..."
+
+chown root:GRP_DEV /devs
+chown root:GRP_ART /arts
+chown root:GRP_SOUND /sounds
+
+chmod 777 /publico
+chmod 770 /devs
+chmod 770 /arts
+chmod 770 /sounds
+
+echo "Fim........."
